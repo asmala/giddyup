@@ -1,4 +1,4 @@
-Giddyup: Bootstrap for Hiccup
+Giddyup: Bootstrap for Hiccup [![Build Status](https://secure.travis-ci.org/asmala/giddyup.png?branch=master)](http://travis-ci.org/asmala/giddyup)
 =============================
 
 A library of [Bootstrap](http://getbootstrap.com/) helpers for
