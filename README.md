@@ -5,6 +5,18 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 [Hiccup](https://github.com/weavejester/hiccup/).
 
 
+## Installation
+
+Add the following to your `project.clj`:
+
+```clojure
+[giddyup "0.1.0"]
+```
+
+For other options, please refer to the library
+[Clojars page](https://clojars.org/giddyup).
+
+
 ## Forms
 
 Easily create Bootstrap styled forms:
