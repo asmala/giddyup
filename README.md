@@ -26,9 +26,9 @@ Easily create Bootstrap styled forms:
  "New account"
  (wrapper
   (label :email "Email")
-  (email-field {:placeholder "joe@example.com"} :email)
   nil
-  (hint "Double-check your email address"))
+  (hint "Double-check your email address")
+  (email-field {:placeholder "joe@example.com"} :email))
  (wrapper
   (label :password "Passoword")
   (password-field :password)))
