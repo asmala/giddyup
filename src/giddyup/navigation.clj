@@ -4,36 +4,46 @@
 
 (declare dropdown-menu)
 
-(defn menu-item
-  "Returns a menu item. `type` can be either `:dropdown` or `:nav`. `menu-item`
-  can be one of:
+(defn- dropdown-menu-item
+  "Returns a menu item. `item` can be one of:
 
   * `:divider`
+  * `\"Nav header\"
   * `[\"link text\" \"/link-url\"]`
   * `[\"link text\" [submenu-items]]`"
-  [type item]
-  (let [dropdown? (= type :dropdown)]
-    (if (keyword? item)
-      [:li {:class (if dropdown? "divider" "divider-vertical")}]
-      [:li
-       (let [[s link-or-submenu] item
-             link-args (if dropdown? {:tabindex "-1"} {})
-             menu-args (if dropdown? {:class "dropdown-submenu"} {})]
-         (if (string? link-or-submenu)
-           (html/link-to link-args link-or-submenu s)
-           (list
-            (html/link-to link-args "#" s)
-            (apply dropdown-menu menu-args link-or-submenu))))])))
+  [item]
+  (cond
+   (keyword? item) [:li.divider]
+   (string? item) [:li.nav-header item]
+   :else (let [[s link-or-submenu] item]
+           (if (string? link-or-submenu)
+             [:li (html/link-to {:tabindex "-1"} link-or-submenu s)]
+             [:li.dropdown-submenu
+              (html/link-to {:tabindex "-1"} "#" s)
+              (apply dropdown-menu link-or-submenu)]))))
+
+(defn- nav-menu-item
+  "Returns a navigation menu item. For format of `item` see `dropdown-menu-item`."
+  [item]
+  (if (keyword? item)
+    [:li.divider-vertical]
+    (let [[s link-or-submenu] item]
+      (if (string? link-or-submenu)
+        [:li (html/link-to link-or-submenu s)]
+        [:li.dropdown
+         (html/link-to {:class "dropdown-toggle" :data-toggle "dropdown"} "#"
+                       s [:b.caret])
+         (apply dropdown-menu link-or-submenu)]))))
 
 (defelem dropdown-menu
   "Returns a dropdown menu consisting of `items`. For format of `items`, see
-  `menu-item`."
+  `dropdown-menu-item`."
   [& items]
   [:ul.dropdown-menu {:role "menu" :aria-labelledby "dropdownMenu"}
-   (map (partial menu-item :dropdown) items)])
+   (map dropdown-menu-item items)])
 
 (defelem nav-menu
   "Returns a navigation menu consisting of `items`. For format of `items`, see
-  `menu-item`."
+  `dropdown-menu-item`."
   [& items]
-  [:ul.nav (map (partial menu-item :nav) items)])
+  [:ul.nav (map nav-menu-item items)])
