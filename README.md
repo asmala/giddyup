@@ -10,7 +10,7 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 Add the following to your `project.clj`:
 
 ```clojure
-[giddyup "0.1.0"]
+[giddyup "0.1.2"]
 ```
 
 For other options, please refer to the library
@@ -37,6 +37,31 @@ Easily create Bootstrap styled forms:
  (button-link-to "/" "Cancel")
  (submit-button "Sign up"))
 ```
+
+
+## Alerts
+
+```clojure
+(alert "Logged in")
+
+(alert {:class "alert alert-block alert-error"}
+       [:h4 "Login failed"]
+       [:p "Please check your username and password."])
+```
+
+
+## Navigation menus
+
+```clojure
+(nav-menu
+ ["Journal Entries" "/journal-entries"]
+ :divider
+ ["Media" [["Add new" "/media/new"]
+           :divider
+           ["Photos" "/media/photos"]
+           ["Video" "/media/video"]]])
+```
+
 
 ## Design philosophy
 
