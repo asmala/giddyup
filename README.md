@@ -10,7 +10,7 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 Add the following to your `project.clj`:
 
 ```clojure
-[giddyup "0.1.2"]
+[giddyup "0.2.0"]
 ```
 
 For other options, please refer to the library
@@ -60,6 +60,23 @@ Easily create Bootstrap styled forms:
            :divider
            ["Photos" "/media/photos"]
            ["Video" "/media/video"]]])
+
+(pager
+ (link-to "Previous")
+ (link-to "Next"))
+
+```
+
+
+## Modals
+
+```clojure
+(modal
+ (modal-header "Question for You")
+ [:div.modal-body
+  [:p "What does Marcellus Wallace look like?"]]
+ [:div.modal-footer
+  (modal-dismiss-link {:class "btn"} "Wha-wha…?")])
 ```
 
 
