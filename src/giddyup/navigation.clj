@@ -47,3 +47,15 @@
   `dropdown-menu-item`."
   [& items]
   [:ul.nav (map nav-menu-item items)])
+
+(defelem pager
+  "Returns a pager element. Disables the previous link and/or the next link if
+  passed strings for `prev-link` or `next-link`."
+  [prev-link next-link]
+  (letfn [(pager-link [link css-class]
+            (if (string? link)
+              [:li {:class (str css-class " disabled")} (html/link-to "#" link)]
+              [:li {:class css-class} link]))]
+    [:ul.pager
+     (pager-link prev-link "previous")
+     (pager-link next-link "next")]))

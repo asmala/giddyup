@@ -2,7 +2,8 @@
   (:use [clojure.test]
         [giddyup.navigation]
         [giddyup.test-support]
-        [hiccup.util :only [to-uri]]))
+        [hiccup.util :only [to-uri]])
+  (:require [hiccup.element :as html]))
 
 (deftest test-dropdown-menu
   (testing "dropdown-menu"
@@ -25,3 +26,11 @@
                      [:li.divider-vertical]
                      [:a {:href (to-uri "/link-2")}]
                      [:a {:href (to-uri "/link-3-1-1")}])))))
+
+(deftest test-page
+  (testing "pager"
+    (let [result (pager "Previous" (html/link-to "#next" "Next"))]
+      (is (valid-hiccup? result))
+      (is (has-tags? result
+                     [:a {:href (to-uri "#next")}]
+                     [:* "Previous"])))))
