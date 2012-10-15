@@ -22,7 +22,7 @@ For other options, please refer to the library
 Easily create Bootstrap styled forms:
 
 ```clojure
-(fielset
+(fieldset
  "New account"
  (wrapper
   (label :email "Email")
