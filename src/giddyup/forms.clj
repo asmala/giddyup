@@ -8,7 +8,7 @@
   inside a wrapper element."
   ([label input] (wrapper label nil nil input))
   ([label error hint & inputs]
-     [:div.control-group (if error {:class "error"})
+     [:div.control-group (if error {:class "control-group error"})
       label
       [:div.controls
        inputs
