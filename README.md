@@ -104,5 +104,3 @@ Copyright © 2012 Janne Asmala
 Distributed under the
 [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html),
 the same as Clojure.
-
-Distributed under the Eclipse Public License, the same as Clojure.
