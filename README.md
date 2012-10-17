@@ -71,7 +71,6 @@ Easily create Bootstrap styled forms:
 (pager
  (link-to "#previous" "Previous")
  (link-to "#next" "Next"))
-
 ```
 
 
@@ -86,6 +85,7 @@ Easily create Bootstrap styled forms:
   (modal-dismiss-link {:class "btn"} "Wha-wha…?")])
 ```
 
+
 ## Display elements
 
 ```clojure
@@ -97,7 +97,7 @@ Easily create Bootstrap styled forms:
 
 (carousel "myCarousel"
  [(image "tibet.png") [:div.caption [:h4 "Top of the world"]]]
- [(image "lhasa.png") [:div.caption [:h4 "Off to Potala palace"]]))
+ [(image "lhasa.png") [:div.caption [:h4 "Off to Potala palace"]]])
 ```
 
 
