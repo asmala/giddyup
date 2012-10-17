@@ -114,3 +114,10 @@
     (let [result (text-field :name "Joe")]
       (is (valid-hiccup? result))
       (is (has-tag? result [:input {:type "text" :name "name" :value "Joe"}])))))
+
+(deftest test-hidden-field
+  (testing "hidden-field"
+    (let [result (hidden-field :redirect-url "example.com")]
+      (is (valid-hiccup? result))
+      (is (has-tag? result [:input {:type "hidden" :name "redirect-url"
+                                    :value "example.com"}])))))
