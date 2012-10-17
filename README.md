@@ -10,7 +10,7 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 Add the following to your `project.clj`:
 
 ```clojure
-[giddyup "0.3.0"]
+[giddyup "0.4.0"]
 ```
 
 For other options, please refer to the library
@@ -99,6 +99,22 @@ Easily create Bootstrap styled forms:
  [(image "tibet.png") [:div.caption [:h4 "Top of the world"]]]
  [(image "lhasa.png") [:div.caption [:h4 "Off to Potala palace"]]))
 ```
+
+
+## Tables
+
+```clojure
+(table "Contact Info"
+       ["Name" "Email"]
+       ["Joe" "joe@example.com"]
+       ["Jenny" "jenny@example.com"])
+
+(thead "Name" "Email")
+
+(tbody ["Joe" "joe@example.com"]
+       ["Jenny" "jenny@example.com"])
+```
+
 
 ## Design philosophy
 
