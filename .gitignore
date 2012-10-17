@@ -5,9 +5,10 @@
 /logs
 /docs
 pom.xml
+pom.xml.asc
 *.jar
 *.class
 *.sh
 .lein-deps-sum
 .lein-failures
-.lein-plugins
+.lein-plugin
