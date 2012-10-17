@@ -10,6 +10,12 @@
    (html/link-to {:class "close" :data-dismiss "alert"} "#" "×")
    content])
 
+;; Graciously stolen from https://github.com/weavejester/hiccup-bootstrap
+(defelem icon
+  "Returns an icon element of `type`."
+  [type]
+  [:i {:class (str "icon-" (name type))}])
+
 (defelem progress-bar
   "Returns a progress bar that's `percentage` complete."
   [percentage]
