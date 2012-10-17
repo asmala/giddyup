@@ -108,3 +108,9 @@
   ([name] (text-field name nil))
   ([name value]
      (f/text-field name value)))
+
+(defelem hidden-field
+  "Returns a hidden field element."
+  ([name] (hidden-field name nil))
+  ([name value]
+     (f/hidden-field name value)))
