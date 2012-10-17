@@ -2,6 +2,14 @@
   (:use [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))
 
+(defelem navbar
+  "Returns a navigation bar with `content`."
+  [& content]
+  [:div.navbar
+   [:div.navbar-inner
+    [:div.container
+     content]]])
+
 (declare dropdown-menu)
 
 (defn- dropdown-menu-item
@@ -47,6 +55,19 @@
   `dropdown-menu-item`."
   [& items]
   [:ul.nav (map nav-menu-item items)])
+
+(defn- breadcrumb
+  "Wraps `link-or-s` for inclusion in a breadcrumbs element."
+  [link-or-s]
+  (if (string? link-or-s)
+    [:li.active link-or-s]
+    [:li link-or-s " " [:span.divider "/"]]))
+
+(defelem breadcrumbs
+  "Returbs a breadcrumbs link element."
+  [& links]
+  [:ul.breadcrumb
+   (map breadcrumb links)])
 
 (defelem pager
   "Returns a pager element. Disables the previous link and/or the next link if

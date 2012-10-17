@@ -10,7 +10,7 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 Add the following to your `project.clj`:
 
 ```clojure
-[giddyup "0.2.1"]
+[giddyup "0.3.0"]
 ```
 
 For other options, please refer to the library
@@ -39,7 +39,7 @@ Easily create Bootstrap styled forms:
 ```
 
 
-## Alerts
+## Alerts and progress bars
 
 ```clojure
 (alert "Logged in")
@@ -47,6 +47,8 @@ Easily create Bootstrap styled forms:
 (alert {:class "alert alert-block alert-error"}
        [:h4 "Login failed"]
        [:p "Please check your username and password."])
+
+(progress-bar 60)
 ```
 
 
@@ -61,9 +63,14 @@ Easily create Bootstrap styled forms:
            ["Photos" "/media/photos"]
            ["Video" "/media/video"]]])
 
+(breadcrumbs
+ (link-to "#home" "Home")
+ (link-to "#category" "Category")
+ "Current page")
+
 (pager
- (link-to "Previous")
- (link-to "Next"))
+ (link-to "#previous" "Previous")
+ (link-to "#next" "Next"))
 
 ```
 
@@ -79,6 +86,19 @@ Easily create Bootstrap styled forms:
   (modal-dismiss-link {:class "btn"} "Wha-wha…?")])
 ```
 
+## Display elements
+
+```clojure
+(accordion "myAccordion"
+ ["Introduction"
+  [:p "Here's some things you need to know."]]
+ ["More info"
+  [:p "You might also find this interesting."]])
+
+(carousel "myCarousel"
+ [(image "tibet.png") [:div.caption [:h4 "Top of the world"]]]
+ [(image "lhasa.png") [:div.caption [:h4 "Off to Potala palace"]]))
+```
 
 ## Design philosophy
 
