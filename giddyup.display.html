@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>giddyup.display documentation</title></head><body><div id="header"><h1><a href="index.html">Giddyup 0.4.1 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li class="current"><a href="giddyup.display.html"><span>giddyup.display</span></a></li><li><a href="giddyup.forms.html"><span>giddyup.forms</span></a></li><li><a href="giddyup.info.html"><span>giddyup.info</span></a></li><li><a href="giddyup.modal.html"><span>giddyup.modal</span></a></li><li><a href="giddyup.navigation.html"><span>giddyup.navigation</span></a></li><li><a href="giddyup.tables.html"><span>giddyup.tables</span></a></li><li><a href="giddyup.util.html"><span>giddyup.util</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="giddyup.display.html#var-accordion"><span>accordion</span></a></li><li><a href="giddyup.display.html#var-carousel"><span>carousel</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>giddyup.display documentation</h2><pre class="doc">Bootstrap display elements.
+<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>giddyup.display documentation</title></head><body><div id="header"><h1><a href="index.html">Giddyup 0.5.0 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li class="current"><a href="giddyup.display.html"><span>giddyup.display</span></a></li><li><a href="giddyup.forms.html"><span>giddyup.forms</span></a></li><li><a href="giddyup.info.html"><span>giddyup.info</span></a></li><li><a href="giddyup.modal.html"><span>giddyup.modal</span></a></li><li><a href="giddyup.navigation.html"><span>giddyup.navigation</span></a></li><li><a href="giddyup.tables.html"><span>giddyup.tables</span></a></li><li><a href="giddyup.util.html"><span>giddyup.util</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="giddyup.display.html#var-accordion"><span>accordion</span></a></li><li><a href="giddyup.display.html#var-carousel"><span>carousel</span></a></li><li><a href="giddyup.display.html#var-thumbnails"><span>thumbnails</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>giddyup.display documentation</h2><pre class="doc">Bootstrap display elements.
 </pre><div class="public" id="var-accordion"><h3>accordion</h3><div class="usage"><code>(accordion attr-map? id &amp; groups)</code></div><pre class="doc">Creates an accordion element with the given `id`. The format for the `groups`
 is `[title &amp; content]`.
 
@@ -9,8 +9,8 @@ is `[title &amp; content]`.
                [&quot;Introduction&quot;
                 [:p &quot;Here's some things you need to know.&quot;]]
                [&quot;More info&quot;
-                [:p &quot;You might also find this interesting.&quot;]])</pre></div><div class="public" id="var-carousel"><h3>carousel</h3><div class="usage"><code>(carousel attr-map? id &amp; slides)</code></div><pre class="doc">Creates a carousel element with the given `id`. `slides` will be wrapped in
-`[:div.item]`.
+                [:p &quot;You might also find this interesting.&quot;]])</pre></div><div class="public" id="var-carousel"><h3>carousel</h3><div class="usage"><code>(carousel attr-map? id slide &amp; slides)</code></div><pre class="doc">Creates a carousel element with the given `id`. `slides` will be wrapped in
+`[:div.item]`, and `slide` in `[:div.item.active]`.
 
 ### Example
 
@@ -18,4 +18,12 @@ is `[title &amp; content]`.
               [(image &quot;tibet.png&quot;)
                [:div.caption [:h4 &quot;Top of the world&quot;]]]
               [(image &quot;lhasa.png&quot;)
-               [:div.caption [:h4 &quot;Off to Potala palace&quot;]]])</pre></div></div></body></html>
+               [:div.caption [:h4 &quot;Off to Potala palace&quot;]]])</pre></div><div class="public" id="var-thumbnails"><h3>thumbnails</h3><div class="usage"><code>(thumbnails attr-map? thumbnail-class &amp; images)</code></div><pre class="doc">Returns a set of thumbnails. `thumbnail-class` will be applied to the element
+wrapping each thumbnail and should indicate the width of the thumbnails, e.g.
+`&quot;span4&quot;`. `images` are of the format `[src alt? url?]`.
+
+### Example
+
+    (thumbnails &quot;span4&quot;
+                [&quot;tibet.png&quot; &quot;Top of the world&quot;]
+                [&quot;potala.png&quot; &quot;Potala Palace&quot; &quot;#potala&quot;])</pre></div></div></body></html>
