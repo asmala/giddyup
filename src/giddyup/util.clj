@@ -16,7 +16,7 @@
 
   ### Example:
 
-      (css-classes \"btn\" [\"success\" \"large\")
+      (css-classes \"btn\" [\"success\" \"large\"])
       ; => \"btn btn-success btn-large\""
   [parent children]
   (apply str parent (map (partial str " " parent "-") children)))
