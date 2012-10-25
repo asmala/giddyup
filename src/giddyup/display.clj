@@ -1,5 +1,5 @@
-(ns ^{:doc "Bootstrap display elements."}
-  giddyup.display
+(ns giddyup.display
+  "Bootstrap display elements."
   (:use [giddyup.util :only [anchor]]
         [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))

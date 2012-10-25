@@ -1,5 +1,5 @@
-(ns ^{:doc "Bootstrap form elements."}
-  giddyup.forms
+(ns giddyup.forms
+  "Bootstrap form elements."
   (:use [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]
             [hiccup.form :as f]))

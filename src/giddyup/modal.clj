@@ -1,9 +1,7 @@
-(ns ^{:doc "Bootstrap modal element generation."}
-  giddyup.modal
+(ns giddyup.modal
+  "Bootstrap modal element generation."
   (:use [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))
-
-
 
 (defelem modal
   "Returns a modal element with `content`.

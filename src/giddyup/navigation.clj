@@ -1,5 +1,5 @@
-(ns ^{:doc "Bootstrap navigation elements."}
-  giddyup.navigation
+(ns giddyup.navigation
+  "Bootstrap navigation elements."
   (:use [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))
 

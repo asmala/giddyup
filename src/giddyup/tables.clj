@@ -1,5 +1,5 @@
-(ns ^{:doc "Bootstrap table markup."}
-  giddyup.tables
+(ns giddyup.tables
+  "Bootstrap table markup."
   (:use [hiccup.def :only [defelem]]))
 
 (defelem thead

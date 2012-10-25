@@ -1,5 +1,5 @@
-(ns ^{:doc "Bootstrap elements for information display."}
-  giddyup.info
+(ns giddyup.info
+  "Bootstrap elements for information display."
   (:use [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))
 

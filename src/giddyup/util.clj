@@ -1,5 +1,5 @@
-(ns ^{:doc "Utility functions for the Giddyup library."}
-  giddyup.util
+(ns giddyup.util
+  "Utility functions for the Giddyup library."
   (:use [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))
 
