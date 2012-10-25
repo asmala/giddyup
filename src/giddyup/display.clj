@@ -1,11 +1,12 @@
-(ns giddyup.display
+(ns ^{:doc "Bootstrap display elements."}
+  giddyup.display
   (:use [giddyup.util :only [anchor]]
         [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))
 
 (defn- accordion-group
-  "Creates accordion group number `n` inside accordion `parent-id` with the given
-  `title` and `content`."
+  "Creates accordion group number `n` inside accordion `parent-id` with the
+  given `title` and `content`."
   [n parent-id title & content]
   (let [id (str parent-id "-" n)
         body-class "accordion-body collapse"
@@ -21,7 +22,15 @@
 
 (defelem accordion
   "Creates an accordion element with the given `id`. The format for the `groups`
-  is `[title & content]`."
+  is `[title & content]`.
+
+  ### Example
+
+      (accordion \"myAccordion\"
+                 [\"Introduction\"
+                  [:p \"Here's some things you need to know.\"]]
+                 [\"More info\"
+                  [:p \"You might also find this interesting.\"]])"
   [id & groups]
   [:div.accordion {:id id}
    (map-indexed #(apply accordion-group %1 id %2) groups)])
@@ -34,7 +43,15 @@
 
 (defelem carousel
   "Creates a carousel element with the given `id`. `slides` will be wrapped in
-  `[:div.item]`."
+  `[:div.item]`.
+
+  ### Example
+
+      (carousel \"myCarousel\"
+                [(image \"tibet.png\")
+                 [:div.caption [:h4 \"Top of the world\"]]]
+                [(image \"lhasa.png\")
+                 [:div.caption [:h4 \"Off to Potala palace\"]]])"
   [id & slides]
   [:div.carousel.slide {:id id}
    [:div.carousel-inner

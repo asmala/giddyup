@@ -1,6 +1,7 @@
-(defproject giddyup "0.4.0"
+(defproject giddyup "0.4.1"
   :description "Hiccup library for generating Bootstrap elements."
   :url "https://github.com/asmala/giddyup"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[hiccup "1.0.1"]])
+  :dependencies [[hiccup "1.0.1"]]
+  :plugins [[codox "0.6.1"]])

@@ -1,4 +1,5 @@
-(ns giddyup.util
+(ns ^{:doc "Utility functions for the Giddyup library."}
+  giddyup.util
   (:use [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))
 
@@ -17,7 +18,7 @@
   ### Example:
 
       (css-classes \"btn\" [\"success\" \"large\"])
-      ; => \"btn btn-success btn-large\""
+      ;=> \"btn btn-success btn-large\""
   [parent children]
   (apply str parent (map (partial str " " parent "-") children)))
 
@@ -25,7 +26,7 @@
 
 (defn css-attr-map
   "Calls `css-classes` and inserts the results into a map as the value for the
-  `:class:` key.
+  `:class` key.
 
   Can be passed optional `attrs`, which are merged with the resulting map. If
   `attrs` contains values for `:class`, these are concatenated with the results

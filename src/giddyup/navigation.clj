@@ -1,9 +1,14 @@
-(ns giddyup.navigation
+(ns ^{:doc "Bootstrap navigation elements."}
+  giddyup.navigation
   (:use [hiccup.def :only [defelem]])
   (:require [hiccup.element :as html]))
 
 (defelem navbar
-  "Returns a navigation bar with `content`."
+  "Returns a navigation bar with `content`.
+
+  ### Example
+
+      (navbar (link-to {:class \"brand\"} \"/\" \"My Journal\"))"
   [& content]
   [:div.navbar
    [:div.navbar-inner
@@ -12,11 +17,11 @@
 
 (declare dropdown-menu)
 
-(defn- dropdown-menu-item
+(defn dropdown-menu-item
   "Returns a menu item. `item` can be one of:
 
   * `:divider`
-  * `\"Nav header\"
+  * `\"Nav header\"`
   * `[\"link text\" \"/link-url\"]`
   * `[\"link text\" [submenu-items]]`"
   [item]
@@ -30,7 +35,7 @@
               (html/link-to {:tabindex "-1"} "#" s)
               (apply dropdown-menu link-or-submenu)]))))
 
-(defn- nav-menu-item
+(defn nav-menu-item
   "Returns a navigation menu item. For format of `item` see `dropdown-menu-item`."
   [item]
   (if (keyword? item)
@@ -45,14 +50,31 @@
 
 (defelem dropdown-menu
   "Returns a dropdown menu consisting of `items`. For format of `items`, see
-  `dropdown-menu-item`."
+  `dropdown-menu-item`.
+
+  ### Example
+
+      (dropdown-menu [\"Add new\" \"/media/new\"]
+                     :divider
+                     \"View old media\"
+                     [\"Photos\" \"/media/photos\"]
+                     [\"Video\" \"/media/video\"])"
   [& items]
   [:ul.dropdown-menu {:role "menu" :aria-labelledby "dropdownMenu"}
    (map dropdown-menu-item items)])
 
 (defelem nav-menu
   "Returns a navigation menu consisting of `items`. For format of `items`, see
-  `dropdown-menu-item`."
+  `dropdown-menu-item`.
+
+  ### Example
+
+      (nav-menu [\"Journal Entries\" \"/journal-entries\"]
+                :divider
+                [\"Media\" [[\"Add new\" \"/media/new\"]
+                           :divider
+                           [\"Photos\" \"/media/photos\"]
+                           [\"Video\" \"/media/video\"]]])"
   [& items]
   [:ul.nav (map nav-menu-item items)])
 
@@ -64,14 +86,25 @@
     [:li link-or-s " " [:span.divider "/"]]))
 
 (defelem breadcrumbs
-  "Returbs a breadcrumbs link element."
+  "Returns a breadcrumbs link element. The last item in `links` should be the
+  title of the current page.
+
+  ### Example
+
+      (breadcrumbs (link-to \"/\" \"Home\")
+                   (link-to \"/news\" \"News\")
+                   \"Politics\")"
   [& links]
   [:ul.breadcrumb
    (map breadcrumb links)])
 
 (defelem pager
   "Returns a pager element. Disables the previous link and/or the next link if
-  passed strings for `prev-link` or `next-link`."
+  passed strings for `prev-link` or `next-link`.
+
+  ### Example
+
+      (pager \"Previous\" (link-to \"?page=2\" \"Next\"))"
   [prev-link next-link]
   (letfn [(pager-link [link css-class]
             (if (string? link)
