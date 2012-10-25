@@ -2,7 +2,8 @@
   (:use [clojure.test]
         [giddyup.display]
         [giddyup.test-support]
-        [hiccup.util :only [to-uri]]))
+        [hiccup.util :only [to-uri]])
+  (:require [hiccup.element :as html]))
 
 (deftest test-accordion
   (testing "accordion"
@@ -31,3 +32,19 @@
                      [:a {:data-slide "next" :href (to-uri "#myCarousel")}]
                      [:div.item.active [:div#first]]
                      [:div.item [:div#second]])))))
+
+(deftest test-thumbnails
+  (testing "thumbnails"
+    (let [result (thumbnails "span4"
+                             ["tibet.png"]
+                             ["potala.png" "Potala Palace"]
+                             ["kailash.png" "Mount Kailash" "#kailash"])]
+      (is (valid-hiccup? result))
+      (is (has-tags? result
+                     [:ul.thumbnails]
+                     [:li.span4]
+                     (html/image "tibet.png")
+                     (html/image "potala.png" "Potala Palace")
+                     (html/image "kailash.png" "Mount Kailash")
+                     [:div.thumbnail]
+                     [:a.thumbnail {:href (to-uri "#kailash")}])))))

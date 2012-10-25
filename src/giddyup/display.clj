@@ -7,10 +7,10 @@
 (defn- accordion-group
   "Creates accordion group number `n` inside accordion `parent-id` with the
   given `title` and `content`."
-  [n parent-id title & content]
+  [parent-id n title & content]
   (let [id (str parent-id "-" n)
-        body-class "accordion-body collapse"
-        body-class (if (zero? n) (str body-class " in") body-class)]
+        body-class (str "accordion-body collapse"
+                        (if (zero? n) " in"))]
     [:div.accordion-group
      [:div.accordion-heading
       (html/link-to {:class "accordion-toggle" :data-toggle "collapse"
@@ -33,17 +33,11 @@
                   [:p \"You might also find this interesting.\"]])"
   [id & groups]
   [:div.accordion {:id id}
-   (map-indexed #(apply accordion-group %1 id %2) groups)])
-
-(defn- slide
-  "Wraps `content` in a slide, and marks it as active if `active?` is true."
-  [active? content]
-  [:div {:class (if active? "item active" "item")}
-   content])
+   (map-indexed (partial apply accordion-group id) groups)])
 
 (defelem carousel
   "Creates a carousel element with the given `id`. `slides` will be wrapped in
-  `[:div.item]`.
+  `[:div.item]`, and `slide` in `[:div.item.active]`.
 
   ### Example
 
@@ -52,11 +46,31 @@
                  [:div.caption [:h4 \"Top of the world\"]]]
                 [(image \"lhasa.png\")
                  [:div.caption [:h4 \"Off to Potala palace\"]]])"
-  [id & slides]
+  [id slide & slides]
   [:div.carousel.slide {:id id}
    [:div.carousel-inner
-    (map-indexed #(slide (zero? %1) %2) slides)]
+    [:div.item.active slide]
+    (for [slide slides] [:div.item slide])]
    (html/link-to {:class "carousel-control left" :data-slide "prev"}
                  (anchor id) "‹")
    (html/link-to {:class "carousel-control right" :data-slide "next"}
                  (anchor id) "›")])
+
+(defelem thumbnails
+  "Returns a set of thumbnails. `thumbnail-class` will be applied to the element
+  wrapping each thumbnail and should indicate the width of the thumbnails, e.g.
+  `\"span4\"`. `images` are of the format `[src alt? url?]`.
+
+  ### Example
+
+      (thumbnails \"span4\"
+                  [\"tibet.png\" \"Top of the world\"]
+                  [\"potala.png\" \"Potala Palace\" \"#potala\"])"
+  [thumbnail-class & images]
+  [:ul.thumbnails
+   (for [[src alt url] images]
+     [:li {:class thumbnail-class}
+      (if url
+        (html/link-to {:class "thumbnail"} url
+                      (html/image src alt))
+        [:div.thumbnail (html/image src alt)])])])

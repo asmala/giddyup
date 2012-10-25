@@ -10,7 +10,7 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 Add the following to your `project.clj`:
 
 ```clojure
-[giddyup "0.4.1"]
+[giddyup "0.5.0"]
 ```
 
 For other options, please refer to the library
@@ -28,16 +28,15 @@ can refer to the [API docs](http://asmala.github.com/giddyup).
 Easily create Bootstrap styled forms:
 
 ```clojure
-(fieldset
- "New account"
- (wrapper
-  (label :email "Email")
-  nil
-  (hint "Double-check your email address")
-  (email-field {:placeholder "joe@example.com"} :email))
- (wrapper
-  (label :password "Passoword")
-  (password-field :password)))
+(fieldset "New account"
+          (wrapper
+           (label :email "Email")
+           nil
+           (hint "Double-check your email address")
+           (email-field {:placeholder "joe@example.com"} :email))
+          (wrapper
+           (label :password "Passoword")
+           (password-field :password)))
 
 (actions
  (button-link-to "/" "Cancel")
@@ -96,14 +95,19 @@ Easily create Bootstrap styled forms:
 
 ```clojure
 (accordion "myAccordion"
- ["Introduction"
-  [:p "Here's some things you need to know."]]
- ["More info"
-  [:p "You might also find this interesting."]])
+           ["Introduction"
+            [:p "Here's some things you need to know."]]
+           ["More info"
+            [:p "You might also find this interesting."]])
 
 (carousel "myCarousel"
- [(image "tibet.png") [:div.caption [:h4 "Top of the world"]]]
- [(image "lhasa.png") [:div.caption [:h4 "Off to Potala palace"]]])
+          [(image "tibet.png") [:div.caption [:h4 "Top of the world"]]]
+          [(image "lhasa.png") [:div.caption [:h4 "Off to Potala palace"]]])
+
+(thumbnails "span4"
+            ["tibet.png"]
+            ["potala.png" "Potala Palace"]
+            ["kailash.png" "Mount Kailash" "#kailash"])
 ```
 
 
