@@ -1,20 +1,85 @@
 <!DOCTYPE html>
-<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>giddyup.forms documentation</title></head><body><div id="header"><h1><a href="index.html">Giddyup 0.4.0 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="giddyup.display.html"><span>giddyup.display</span></a></li><li class="current"><a href="giddyup.forms.html"><span>giddyup.forms</span></a></li><li><a href="giddyup.info.html"><span>giddyup.info</span></a></li><li><a href="giddyup.modal.html"><span>giddyup.modal</span></a></li><li><a href="giddyup.navigation.html"><span>giddyup.navigation</span></a></li><li><a href="giddyup.tables.html"><span>giddyup.tables</span></a></li><li><a href="giddyup.util.html"><span>giddyup.util</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="giddyup.forms.html#var-actions"><span>actions</span></a></li><li><a href="giddyup.forms.html#var-button-link-to"><span>button-link-to</span></a></li><li><a href="giddyup.forms.html#var-check-box"><span>check-box</span></a></li><li><a href="giddyup.forms.html#var-drop-down"><span>drop-down</span></a></li><li><a href="giddyup.forms.html#var-email-field"><span>email-field</span></a></li><li><a href="giddyup.forms.html#var-error"><span>error</span></a></li><li><a href="giddyup.forms.html#var-fieldset"><span>fieldset</span></a></li><li><a href="giddyup.forms.html#var-file-upload"><span>file-upload</span></a></li><li><a href="giddyup.forms.html#var-group-check-box"><span>group-check-box</span></a></li><li><a href="giddyup.forms.html#var-group-radio-button"><span>group-radio-button</span></a></li><li><a href="giddyup.forms.html#var-hidden-field"><span>hidden-field</span></a></li><li><a href="giddyup.forms.html#var-hint"><span>hint</span></a></li><li><a href="giddyup.forms.html#var-label"><span>label</span></a></li><li><a href="giddyup.forms.html#var-password-field"><span>password-field</span></a></li><li><a href="giddyup.forms.html#var-submit-button"><span>submit-button</span></a></li><li><a href="giddyup.forms.html#var-text-area"><span>text-area</span></a></li><li><a href="giddyup.forms.html#var-text-field"><span>text-field</span></a></li><li><a href="giddyup.forms.html#var-wrapper"><span>wrapper</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>giddyup.forms documentation</h2><pre class="doc"></pre><div class="public" id="var-actions"><h3>actions</h3><div class="usage"><code>(actions attr-map? &amp; content)</code></div><pre class="doc">Returns the `content` in a wrapper intended for form buttons.
-</pre></div><div class="public" id="var-button-link-to"><h3>button-link-to</h3><div class="usage"><code>(button-link-to attr-map? url &amp; content)</code></div><pre class="doc">Returns a button-like link for `url` with `content` as text.
-</pre></div><div class="public" id="var-check-box"><h3>check-box</h3><div class="usage"><code>(check-box attr-map? name)</code><code>(check-box attr-map? name checked?)</code></div><pre class="doc">Returns a checkbox element.
-</pre></div><div class="public" id="var-drop-down"><h3>drop-down</h3><div class="usage"><code>(drop-down attr-map? name options)</code><code>(drop-down attr-map? name options selected)</code></div><pre class="doc">Returns a dropdown element.
-</pre></div><div class="public" id="var-email-field"><h3>email-field</h3><div class="usage"><code>(email-field attr-map? name)</code><code>(email-field attr-map? name value)</code></div><pre class="doc">Returns an email element.
-</pre></div><div class="public" id="var-error"><h3>error</h3><div class="usage"><code>(error attr-map? &amp; content)</code></div><pre class="doc">Returns an error element with `content` as text.
-</pre></div><div class="public" id="var-fieldset"><h3>fieldset</h3><div class="usage"><code>(fieldset attr-map? s &amp; content)</code></div><pre class="doc">Returns a fieldset wrapped around `content` with `s` as legend.
-</pre></div><div class="public" id="var-file-upload"><h3>file-upload</h3><div class="usage"><code>(file-upload attr-map? name)</code></div><pre class="doc">Returns a file upload element.
-</pre></div><div class="public" id="var-group-check-box"><h3>group-check-box</h3><div class="usage"><code>(group-check-box attr-map? name value label)</code><code>(group-check-box attr-map? name value label checked?)</code></div><pre class="doc">Returns a checkbox element to be used as a part of a group of checkboxes.
-</pre></div><div class="public" id="var-group-radio-button"><h3>group-radio-button</h3><div class="usage"><code>(group-radio-button attr-map? group value label)</code><code>(group-radio-button attr-map? group value label checked?)</code></div><pre class="doc">Returns a radio button element to be used as a part of a group of radio buttons.
-</pre></div><div class="public" id="var-hidden-field"><h3>hidden-field</h3><div class="usage"><code>(hidden-field attr-map? name)</code><code>(hidden-field attr-map? name value)</code></div><pre class="doc">Returns a hidden field element.
-</pre></div><div class="public" id="var-hint"><h3>hint</h3><div class="usage"><code>(hint attr-map? &amp; content)</code></div><pre class="doc">Returns a textual hint element with `content` as text.
-</pre></div><div class="public" id="var-label"><h3>label</h3><div class="usage"><code>(label attr-map? name &amp; content)</code></div><pre class="doc">Returns a label element for the input called `name` with `content` as text.
-</pre></div><div class="public" id="var-password-field"><h3>password-field</h3><div class="usage"><code>(password-field attr-map? name)</code><code>(password-field attr-map? name value)</code></div><pre class="doc">Returns a password element.
-</pre></div><div class="public" id="var-submit-button"><h3>submit-button</h3><div class="usage"><code>(submit-button attr-map? s)</code></div><pre class="doc">Returns a submit-button with `s` as text.
-</pre></div><div class="public" id="var-text-area"><h3>text-area</h3><div class="usage"><code>(text-area attr-map? name)</code><code>(text-area attr-map? name value)</code></div><pre class="doc">Returns a text area element.
-</pre></div><div class="public" id="var-text-field"><h3>text-field</h3><div class="usage"><code>(text-field attr-map? name)</code><code>(text-field attr-map? name value)</code></div><pre class="doc">Returns a text field element.
-</pre></div><div class="public" id="var-wrapper"><h3>wrapper</h3><div class="usage"><code>(wrapper attr-map? label input)</code><code>(wrapper attr-map? label error hint &amp; inputs)</code></div><pre class="doc">Returns `label` and `inputs` as well as eventual `error` and `hint`
-inside a wrapper element.</pre></div></div></body></html>
+<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>giddyup.forms documentation</title></head><body><div id="header"><h1><a href="index.html">Giddyup 0.4.0 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="giddyup.display.html"><span>giddyup.display</span></a></li><li class="current"><a href="giddyup.forms.html"><span>giddyup.forms</span></a></li><li><a href="giddyup.info.html"><span>giddyup.info</span></a></li><li><a href="giddyup.modal.html"><span>giddyup.modal</span></a></li><li><a href="giddyup.navigation.html"><span>giddyup.navigation</span></a></li><li><a href="giddyup.tables.html"><span>giddyup.tables</span></a></li><li><a href="giddyup.util.html"><span>giddyup.util</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="giddyup.forms.html#var-actions"><span>actions</span></a></li><li><a href="giddyup.forms.html#var-button-link-to"><span>button-link-to</span></a></li><li><a href="giddyup.forms.html#var-check-box"><span>check-box</span></a></li><li><a href="giddyup.forms.html#var-drop-down"><span>drop-down</span></a></li><li><a href="giddyup.forms.html#var-email-field"><span>email-field</span></a></li><li><a href="giddyup.forms.html#var-error"><span>error</span></a></li><li><a href="giddyup.forms.html#var-fieldset"><span>fieldset</span></a></li><li><a href="giddyup.forms.html#var-file-upload"><span>file-upload</span></a></li><li><a href="giddyup.forms.html#var-group-check-box"><span>group-check-box</span></a></li><li><a href="giddyup.forms.html#var-group-radio-button"><span>group-radio-button</span></a></li><li><a href="giddyup.forms.html#var-hidden-field"><span>hidden-field</span></a></li><li><a href="giddyup.forms.html#var-hint"><span>hint</span></a></li><li><a href="giddyup.forms.html#var-label"><span>label</span></a></li><li><a href="giddyup.forms.html#var-password-field"><span>password-field</span></a></li><li><a href="giddyup.forms.html#var-submit-button"><span>submit-button</span></a></li><li><a href="giddyup.forms.html#var-text-area"><span>text-area</span></a></li><li><a href="giddyup.forms.html#var-text-field"><span>text-field</span></a></li><li><a href="giddyup.forms.html#var-wrapper"><span>wrapper</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>giddyup.forms documentation</h2><pre class="doc">Bootstrap form elements.
+</pre><div class="public" id="var-actions"><h3>actions</h3><div class="usage"><code>(actions attr-map? &amp; content)</code></div><pre class="doc">Returns the `content` in a wrapper intended for form buttons.
+
+### Example
+
+    (actions
+     (button-link-to &quot;/&quot; &quot;Cancel&quot;)
+     (submit-button &quot;Sign up&quot;))</pre></div><div class="public" id="var-button-link-to"><h3>button-link-to</h3><div class="usage"><code>(button-link-to attr-map? url &amp; content)</code></div><pre class="doc">Returns a button-like link for `url` with `content` as text.
+
+### Example
+
+    (button-link-to &quot;/&quot; &quot;Cancel&quot;)</pre></div><div class="public" id="var-check-box"><h3>check-box</h3><div class="usage"><code>(check-box attr-map? name)</code><code>(check-box attr-map? name checked?)</code></div><pre class="doc">Returns a checkbox element.
+
+### Example
+
+    (check-box :remember-me)</pre></div><div class="public" id="var-drop-down"><h3>drop-down</h3><div class="usage"><code>(drop-down attr-map? name options)</code><code>(drop-down attr-map? name options selected)</code></div><pre class="doc">Returns a dropdown element.
+
+### Example
+
+    (drop-down :language [&quot;Finnish&quot; &quot;English&quot;])</pre></div><div class="public" id="var-email-field"><h3>email-field</h3><div class="usage"><code>(email-field attr-map? name)</code><code>(email-field attr-map? name value)</code></div><pre class="doc">Returns an email element.
+
+### Example
+
+    (email-field :email)</pre></div><div class="public" id="var-error"><h3>error</h3><div class="usage"><code>(error attr-map? &amp; content)</code></div><pre class="doc">Returns an error element with `content` as text.
+
+### Example
+
+    (error &quot;This field is required.&quot;)</pre></div><div class="public" id="var-fieldset"><h3>fieldset</h3><div class="usage"><code>(fieldset attr-map? s &amp; content)</code></div><pre class="doc">Returns a fieldset wrapped around `content` with `s` as legend.
+
+### Example
+
+    (fieldset &quot;Contact Info&quot;
+              (label :email &quot;Email&quot;)
+              (email-field :email))</pre></div><div class="public" id="var-file-upload"><h3>file-upload</h3><div class="usage"><code>(file-upload attr-map? name)</code></div><pre class="doc">Returns a file upload element.
+
+### Example
+
+    (file-upload :avatar)</pre></div><div class="public" id="var-group-check-box"><h3>group-check-box</h3><div class="usage"><code>(group-check-box attr-map? name value label)</code><code>(group-check-box attr-map? name value label checked?)</code></div><pre class="doc">Returns a checkbox element to be used as a part of a group of checkboxes.
+
+### Example
+
+    (group-check-box :hobbies &quot;web-dev&quot; &quot;Web Development&quot;)</pre></div><div class="public" id="var-group-radio-button"><h3>group-radio-button</h3><div class="usage"><code>(group-radio-button attr-map? group value label)</code><code>(group-radio-button attr-map? group value label checked?)</code></div><pre class="doc">Returns a radio button element to be used as a part of a group of radio
+buttons.
+
+### Example
+
+    (group-radio-button :language &quot;fi&quot; &quot;Finnish&quot;)</pre></div><div class="public" id="var-hidden-field"><h3>hidden-field</h3><div class="usage"><code>(hidden-field attr-map? name)</code><code>(hidden-field attr-map? name value)</code></div><pre class="doc">Returns a hidden field element.
+
+### Example
+
+    (hidden-field :redirect-url &quot;http://www.example.com/&quot;)</pre></div><div class="public" id="var-hint"><h3>hint</h3><div class="usage"><code>(hint attr-map? &amp; content)</code></div><pre class="doc">Returns a textual hint element with `content` as text.
+
+### Example
+
+    (hint &quot;Double-check your email address&quot;)</pre></div><div class="public" id="var-label"><h3>label</h3><div class="usage"><code>(label attr-map? name &amp; content)</code></div><pre class="doc">Returns a label element for the input called `name` with `content` as text.
+
+### Example
+
+    (label :email &quot;Email&quot;)</pre></div><div class="public" id="var-password-field"><h3>password-field</h3><div class="usage"><code>(password-field attr-map? name)</code><code>(password-field attr-map? name value)</code></div><pre class="doc">Returns a password element.
+
+### Example
+
+    (password-field :password)</pre></div><div class="public" id="var-submit-button"><h3>submit-button</h3><div class="usage"><code>(submit-button attr-map? s)</code></div><pre class="doc">Returns a submit-button with `s` as text.
+
+### Example
+
+    (submit-button &quot;Sign up&quot;)</pre></div><div class="public" id="var-text-area"><h3>text-area</h3><div class="usage"><code>(text-area attr-map? name)</code><code>(text-area attr-map? name value)</code></div><pre class="doc">Returns a text area element.
+
+### Example
+
+    (text-area :bio)</pre></div><div class="public" id="var-text-field"><h3>text-field</h3><div class="usage"><code>(text-field attr-map? name)</code><code>(text-field attr-map? name value)</code></div><pre class="doc">Returns a text field element.
+
+### Example
+
+    (text-field :name)</pre></div><div class="public" id="var-wrapper"><h3>wrapper</h3><div class="usage"><code>(wrapper attr-map? label input)</code><code>(wrapper attr-map? label error hint &amp; inputs)</code></div><pre class="doc">Returns `label` and `inputs` as well as eventual `error` and `hint`
+inside a wrapper element.
+
+### Example
+
+    (wrapper
+     (label :email &quot;Email&quot;)
+     nil
+     (hint &quot;Double-check your email address&quot;)
+     (email-field {:placeholder &quot;joe@example.com&quot;} :email))</pre></div></div></body></html>
