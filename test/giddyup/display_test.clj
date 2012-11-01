@@ -33,6 +33,29 @@
                      [:div.item.active [:div#first]]
                      [:div.item [:div#second]])))))
 
+(deftest test-media-object
+  (testing "media-object"
+    (testing "string arguments"
+      (let [result (media-object "/img/avatars/joe.png" "On Nov 1st, 2012, Joe said:"
+                                 [:span.comment "Media objects are neat!"])]
+        (is (valid-hiccup? result))
+        (is (has-tags? result
+                       [:div.media]
+                       [:img {:src (to-uri "/img/avatars/joe.png")}]
+                       [:* "On Nov 1st, 2012, Joe said:"]
+                       [:span.comment "Media objects are neat!"]))))
+    (testing "vector arguments"
+      (let [result (media-object
+                    (html/image {:class "pull-right media-object"} "/img/admin.png")
+                    [:h4.media-heading.admin "On Nov 2nd, 2012, Admin said:"]
+                    [:* "Yeah, they were added in Bootstrap 2.2.0."])]
+        (is (valid-hiccup? result))
+        (is (has-tags? result
+                       [:div.media]
+                       [:img {:src (to-uri "/img/admin.png")}]
+                       [:* "On Nov 2nd, 2012, Admin said:"]
+                       [:* "Yeah, they were added in Bootstrap 2.2.0."]))))))
+
 (deftest test-thumbnails
   (testing "thumbnails"
     (let [result (thumbnails "span4"

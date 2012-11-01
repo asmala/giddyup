@@ -56,6 +56,32 @@
    (html/link-to {:class "carousel-control right" :data-slide "next"}
                  (anchor id) "›")])
 
+(defelem media-object
+  "Returns a media object. `image` can be either a string representing a URL or
+  a vector representing a Hiccup element. `heading` can similarly be either a
+  string representing the media object heading or a vector representation of the
+  heading element.
+
+  ### Examples
+
+      (media-object \"/img/avatars/joe.png\" \"On Nov 1st, 2012, Joe said:\"
+                    \"Media objects are neat!\")
+
+      (media-object
+       (image {:class \"pull-right \"media-object\"} \"/img/admin.png\")
+       [:h4.media-heading.admin \"On Nov 2nd 2012, Admin said:]
+       [:strong \"Yes, they were added in Bootstrap 2.2.0\"])"
+  [image heading & content]
+  [:div.media
+   (if (vector? image)
+     image
+     (html/image {:class "pull-left media-object"} image))
+   [:div.media-body
+    (if (vector? heading)
+      heading
+      [:h4.media-heading heading])
+    content]])
+
 (defelem thumbnails
   "Returns a set of thumbnails. `thumbnail-class` will be applied to the element
   wrapping each thumbnail and should indicate the width of the thumbnails, e.g.

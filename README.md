@@ -10,7 +10,7 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 Add the following to your `project.clj`:
 
 ```clojure
-[giddyup "0.5.1"]
+[giddyup "0.6.0"]
 ```
 
 For other options, please refer to the library
@@ -103,6 +103,9 @@ Easily create Bootstrap styled forms:
 (carousel "myCarousel"
           [(image "tibet.png") [:div.caption [:h4 "Top of the world"]]]
           [(image "lhasa.png") [:div.caption [:h4 "Off to Potala palace"]]])
+
+(media-object "img/avatars/joe.png" "On Nov 1st, 2012, Joe said:"
+              "Media objects are neat!")
 
 (thumbnails "span4"
             ["tibet.png"]
