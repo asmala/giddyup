@@ -35,7 +35,7 @@ Easily create Bootstrap styled forms:
            (hint "Double-check your email address")
            (email-field {:placeholder "joe@example.com"} :email))
           (wrapper
-           (label :password "Passoword")
+           (label :password "Password")
            (password-field :password)))
 
 (actions
