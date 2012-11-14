@@ -15,42 +15,18 @@
     [:div.container
      content]]])
 
-(declare dropdown-menu)
+(defelem dropdown-menu
+  "Returns a dropdown menu consisting of `items`. For format of `items`, see
+  `dropdown-menu-item`.
 
-(defn dropdown-menu-item
-  "Returns a menu item. `item` can be one of:
+  ### Item format
+
+  `items` can be one of:
 
   * `:divider`
   * `\"Nav header\"`
   * `[\"link text\" \"/link-url\"]`
-  * `[\"link text\" [submenu-items]]`"
-  [item]
-  (cond
-   (keyword? item) [:li.divider]
-   (string? item) [:li.nav-header item]
-   :else (let [[s link-or-submenu] item]
-           (if (string? link-or-submenu)
-             [:li (html/link-to {:tabindex "-1"} link-or-submenu s)]
-             [:li.dropdown-submenu
-              (html/link-to {:tabindex "-1"} "#" s)
-              (apply dropdown-menu link-or-submenu)]))))
-
-(defn nav-menu-item
-  "Returns a navigation menu item. For format of `item` see `dropdown-menu-item`."
-  [item]
-  (if (keyword? item)
-    [:li.divider-vertical]
-    (let [[s link-or-submenu] item]
-      (if (string? link-or-submenu)
-        [:li (html/link-to link-or-submenu s)]
-        [:li.dropdown
-         (html/link-to {:class "dropdown-toggle" :data-toggle "dropdown"} "#"
-                       s [:b.caret])
-         (apply dropdown-menu link-or-submenu)]))))
-
-(defelem dropdown-menu
-  "Returns a dropdown menu consisting of `items`. For format of `items`, see
-  `dropdown-menu-item`.
+  * `[\"link text\" [submenu-items]]`
 
   ### Example
 
@@ -61,11 +37,24 @@
                      [\"Video\" \"/media/video\"])"
   [& items]
   [:ul.dropdown-menu {:role "menu" :aria-labelledby "dropdownMenu"}
-   (map dropdown-menu-item items)])
+   (for [item items]
+     (cond
+      (keyword? item) [:li.divider]
+      (string? item) [:li.nav-header item]
+      :else (let [[s link-or-submenu] item]
+              (if (string? link-or-submenu)
+                [:li (html/link-to {:tabindex "-1"} link-or-submenu s)]
+                [:li.dropdown-submenu
+                 (html/link-to {:tabindex "-1"} "#" s)
+                 (apply dropdown-menu link-or-submenu)]))))])
 
 (defelem nav-menu
   "Returns a navigation menu consisting of `items`. For format of `items`, see
   `dropdown-menu-item`.
+
+  ### Item format
+
+  For format of `items`, see `dropdown-menu`.
 
   ### Example
 
@@ -76,14 +65,17 @@
                            [\"Photos\" \"/media/photos\"]
                            [\"Video\" \"/media/video\"]]])"
   [& items]
-  [:ul.nav (map nav-menu-item items)])
-
-(defn- breadcrumb
-  "Wraps `link-or-s` for inclusion in a breadcrumbs element."
-  [link-or-s]
-  (if (string? link-or-s)
-    [:li.active link-or-s]
-    [:li link-or-s " " [:span.divider "/"]]))
+  [:ul.nav
+   (for [item items]
+       (if (keyword? item)
+         [:li.divider-vertical]
+         (let [[s link-or-submenu] item]
+           (if (string? link-or-submenu)
+             [:li (html/link-to link-or-submenu s)]
+             [:li.dropdown
+              (html/link-to {:class "dropdown-toggle" :data-toggle "dropdown"} "#"
+                            s [:b.caret])
+              (apply dropdown-menu link-or-submenu)]))))])
 
 (defelem breadcrumbs
   "Returns a breadcrumbs link element. The last item in `links` should be the
@@ -96,7 +88,9 @@
                    \"Politics\")"
   [& links]
   [:ul.breadcrumb
-   (map breadcrumb links)])
+   (for [link (butlast links)]
+     [:li link " " [:span.divider "/"]])
+   [:li.active (last links)]])
 
 (defelem pager
   "Returns a pager element. Disables the previous link and/or the next link if
