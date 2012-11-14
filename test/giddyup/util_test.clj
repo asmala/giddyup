@@ -10,17 +10,16 @@
 
 (deftest test-css-classes
   (testing "css-classes"
-    (let [result (css-classes "btn" ["success" "large"])]
-      (is (= result "btn btn-success btn-large"))
-      (is (= result (c "btn" ["success" "large"]))))))
+    (is (= (css-classes "btn" ["success" "large"])
+           "btn btn-success btn-large"))
+    (is (= c css-classes))))
 
 (deftest test-css-attr-map
   (testing "css-attr-map"
-    (let [result (css-attr-map "btn" ["success" "large"])]
-      (is (= result {:class "btn btn-success btn-large"}))
-      (is (= result (cm "btn" ["success" "large"]))))
+    (is (= (css-attr-map "btn" ["success" "large"])
+           {:class "btn btn-success btn-large"}))
     (testing "with optional attrs"
-      (let [result (css-attr-map "btn" ["success" "large"]
-                                 {:class "disabled" :disabled true})]
-        (is (= result {:class "btn btn-success btn-large disabled"
-                       :disabled true}))))))
+      (is (= (css-attr-map "btn" ["success" "large"]
+                           {:class "disabled" :disabled true})
+             {:class "btn btn-success btn-large disabled" :disabled true})))
+    (is (= cm css-attr-map))))
