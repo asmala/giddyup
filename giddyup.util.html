@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>giddyup.util documentation</title></head><body><div id="header"><h1><a href="index.html">Giddyup 0.6.0 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="giddyup.display.html"><span>giddyup.display</span></a></li><li><a href="giddyup.forms.html"><span>giddyup.forms</span></a></li><li><a href="giddyup.info.html"><span>giddyup.info</span></a></li><li><a href="giddyup.modal.html"><span>giddyup.modal</span></a></li><li><a href="giddyup.navigation.html"><span>giddyup.navigation</span></a></li><li><a href="giddyup.tables.html"><span>giddyup.tables</span></a></li><li class="current"><a href="giddyup.util.html"><span>giddyup.util</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="giddyup.util.html#var-anchor"><span>anchor</span></a></li><li><a href="giddyup.util.html#var-css-attr-map"><span>css-attr-map</span></a></li><li><a href="giddyup.util.html#var-css-classes"><span>css-classes</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>giddyup.util documentation</h2><pre class="doc">Utility functions for the Giddyup library.
+<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>giddyup.util documentation</title></head><body><div id="header"><h1><a href="index.html">Giddyup 0.6.1 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="giddyup.display.html"><span>giddyup.display</span></a></li><li><a href="giddyup.forms.html"><span>giddyup.forms</span></a></li><li><a href="giddyup.info.html"><span>giddyup.info</span></a></li><li><a href="giddyup.modal.html"><span>giddyup.modal</span></a></li><li><a href="giddyup.navigation.html"><span>giddyup.navigation</span></a></li><li><a href="giddyup.tables.html"><span>giddyup.tables</span></a></li><li class="current"><a href="giddyup.util.html"><span>giddyup.util</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="giddyup.util.html#var-anchor"><span>anchor</span></a></li><li><a href="giddyup.util.html#var-c"><span>c</span></a></li><li><a href="giddyup.util.html#var-cm"><span>cm</span></a></li><li><a href="giddyup.util.html#var-css-attr-map"><span>css-attr-map</span></a></li><li><a href="giddyup.util.html#var-css-classes"><span>css-classes</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>giddyup.util documentation</h2><pre class="doc">Utility functions for the Giddyup library.
 </pre><div class="public" id="var-anchor"><h3>anchor</h3><div class="usage"><code>(anchor maybe-id)</code></div><pre class="doc">Converts `maybe-id` into an anchor by prepending &quot;#&quot; if missing.
-</pre></div><div class="public" id="var-css-attr-map"><h3>css-attr-map</h3><div class="usage"><code>(css-attr-map parent children attrs)</code><code>(css-attr-map parent children)</code></div><pre class="doc">Calls `css-classes` and inserts the results into a map as the value for the
+</pre></div><div class="public" id="var-c"><h3>c</h3><div class="usage"></div><pre class="doc">Alias for `css-classes`.
+</pre></div><div class="public" id="var-cm"><h3>cm</h3><div class="usage"></div><pre class="doc">Alias for `css-attr-map`.
+</pre></div><div class="public" id="var-css-attr-map"><h3>css-attr-map</h3><div class="usage"><code>(css-attr-map parent children)</code><code>(css-attr-map parent children attrs)</code></div><pre class="doc">Calls `css-classes` and inserts the results into a map as the value for the
 `:class` key.
 
 Can be passed optional `attrs`, which are merged with the resulting map. If
 `attrs` contains values for `:class`, these are concatenated with the results
 from `css-classes`.
 
-Aliased as `cm`.</pre></div><div class="public" id="var-css-classes"><h3>css-classes</h3><div class="usage"><code>(css-classes parent children)</code></div><pre class="doc">Creates &quot;namespaced&quot; CSS class names according to the Bootstrap convention.
+Aliased as `cm`.
+
+### Example:
+
+    (css-attr-map &quot;btn&quot; [&quot;success&quot; &quot;large&quot;]
+                  {:class &quot;disabled&quot; :disabled true})
+    ;=&gt; {:class &quot;btn btn-success btn-large disabled&quot; :disabled true}</pre></div><div class="public" id="var-css-classes"><h3>css-classes</h3><div class="usage"><code>(css-classes parent children)</code></div><pre class="doc">Creates &quot;namespaced&quot; CSS class names according to the Bootstrap convention.
 
 Aliased as `c`.
 

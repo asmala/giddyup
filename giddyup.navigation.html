@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>giddyup.navigation documentation</title></head><body><div id="header"><h1><a href="index.html">Giddyup 0.6.0 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="giddyup.display.html"><span>giddyup.display</span></a></li><li><a href="giddyup.forms.html"><span>giddyup.forms</span></a></li><li><a href="giddyup.info.html"><span>giddyup.info</span></a></li><li><a href="giddyup.modal.html"><span>giddyup.modal</span></a></li><li class="current"><a href="giddyup.navigation.html"><span>giddyup.navigation</span></a></li><li><a href="giddyup.tables.html"><span>giddyup.tables</span></a></li><li><a href="giddyup.util.html"><span>giddyup.util</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="giddyup.navigation.html#var-breadcrumbs"><span>breadcrumbs</span></a></li><li><a href="giddyup.navigation.html#var-dropdown-menu"><span>dropdown-menu</span></a></li><li><a href="giddyup.navigation.html#var-dropdown-menu-item"><span>dropdown-menu-item</span></a></li><li><a href="giddyup.navigation.html#var-nav-menu"><span>nav-menu</span></a></li><li><a href="giddyup.navigation.html#var-nav-menu-item"><span>nav-menu-item</span></a></li><li><a href="giddyup.navigation.html#var-navbar"><span>navbar</span></a></li><li><a href="giddyup.navigation.html#var-pager"><span>pager</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>giddyup.navigation documentation</h2><pre class="doc">Bootstrap navigation elements.
+<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>giddyup.navigation documentation</title></head><body><div id="header"><h1><a href="index.html">Giddyup 0.6.1 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="giddyup.display.html"><span>giddyup.display</span></a></li><li><a href="giddyup.forms.html"><span>giddyup.forms</span></a></li><li><a href="giddyup.info.html"><span>giddyup.info</span></a></li><li><a href="giddyup.modal.html"><span>giddyup.modal</span></a></li><li class="current"><a href="giddyup.navigation.html"><span>giddyup.navigation</span></a></li><li><a href="giddyup.tables.html"><span>giddyup.tables</span></a></li><li><a href="giddyup.util.html"><span>giddyup.util</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="giddyup.navigation.html#var-breadcrumbs"><span>breadcrumbs</span></a></li><li><a href="giddyup.navigation.html#var-dropdown-menu"><span>dropdown-menu</span></a></li><li><a href="giddyup.navigation.html#var-nav-menu"><span>nav-menu</span></a></li><li><a href="giddyup.navigation.html#var-navbar"><span>navbar</span></a></li><li><a href="giddyup.navigation.html#var-pager"><span>pager</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>giddyup.navigation documentation</h2><pre class="doc">Bootstrap navigation elements.
 </pre><div class="public" id="var-breadcrumbs"><h3>breadcrumbs</h3><div class="usage"><code>(breadcrumbs attr-map? &amp; links)</code></div><pre class="doc">Returns a breadcrumbs link element. The last item in `links` should be the
 title of the current page.
 
@@ -10,19 +10,27 @@ title of the current page.
                  &quot;Politics&quot;)</pre></div><div class="public" id="var-dropdown-menu"><h3>dropdown-menu</h3><div class="usage"><code>(dropdown-menu attr-map? &amp; items)</code></div><pre class="doc">Returns a dropdown menu consisting of `items`. For format of `items`, see
 `dropdown-menu-item`.
 
+### Item format
+
+`items` can be one of:
+
+* `:divider`
+* `&quot;Nav header&quot;`
+* `[&quot;link text&quot; &quot;/link-url&quot;]`
+* `[&quot;link text&quot; [submenu-items]]`
+
 ### Example
 
     (dropdown-menu [&quot;Add new&quot; &quot;/media/new&quot;]
                    :divider
                    &quot;View old media&quot;
                    [&quot;Photos&quot; &quot;/media/photos&quot;]
-                   [&quot;Video&quot; &quot;/media/video&quot;])</pre></div><div class="public" id="var-dropdown-menu-item"><h3>dropdown-menu-item</h3><div class="usage"><code>(dropdown-menu-item item)</code></div><pre class="doc">Returns a menu item. `item` can be one of:
-
-* `:divider`
-* `&quot;Nav header&quot;`
-* `[&quot;link text&quot; &quot;/link-url&quot;]`
-* `[&quot;link text&quot; [submenu-items]]`</pre></div><div class="public" id="var-nav-menu"><h3>nav-menu</h3><div class="usage"><code>(nav-menu attr-map? &amp; items)</code></div><pre class="doc">Returns a navigation menu consisting of `items`. For format of `items`, see
+                   [&quot;Video&quot; &quot;/media/video&quot;])</pre></div><div class="public" id="var-nav-menu"><h3>nav-menu</h3><div class="usage"><code>(nav-menu attr-map? &amp; items)</code></div><pre class="doc">Returns a navigation menu consisting of `items`. For format of `items`, see
 `dropdown-menu-item`.
+
+### Item format
+
+For format of `items`, see `dropdown-menu`.
 
 ### Example
 
@@ -31,8 +39,7 @@ title of the current page.
               [&quot;Media&quot; [[&quot;Add new&quot; &quot;/media/new&quot;]
                          :divider
                          [&quot;Photos&quot; &quot;/media/photos&quot;]
-                         [&quot;Video&quot; &quot;/media/video&quot;]]])</pre></div><div class="public" id="var-nav-menu-item"><h3>nav-menu-item</h3><div class="usage"><code>(nav-menu-item item)</code></div><pre class="doc">Returns a navigation menu item. For format of `item` see `dropdown-menu-item`.
-</pre></div><div class="public" id="var-navbar"><h3>navbar</h3><div class="usage"><code>(navbar attr-map? &amp; content)</code></div><pre class="doc">Returns a navigation bar with `content`.
+                         [&quot;Video&quot; &quot;/media/video&quot;]]])</pre></div><div class="public" id="var-navbar"><h3>navbar</h3><div class="usage"><code>(navbar attr-map? &amp; content)</code></div><pre class="doc">Returns a navigation bar with `content`.
 
 ### Example
 
