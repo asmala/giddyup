@@ -1,7 +1,8 @@
 (ns giddyup.display
   "Bootstrap display elements."
   (:use [hiccup.def :only [defelem]])
-  (:require [giddyup.info :as info]))
+  (:require [giddyup.info :as info]
+            [hiccup.element :as html]))
 
 (defn- accordion-group
   "Creates accordion group number `n` inside accordion `parent-id` with the
@@ -79,7 +80,7 @@
   [:div.media
    (if (vector? image)
      image
-     [:img.pull-left.media-object {:src image}])
+     (html/image {:class "pull-left media-object"} image))
    [:div.media-body
     (if (vector? heading)
       heading

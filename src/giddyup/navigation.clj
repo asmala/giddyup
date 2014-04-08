@@ -1,6 +1,7 @@
 (ns giddyup.navigation
   "Bootstrap navigation elements."
-  (:use [hiccup.def :only [defelem]]))
+  (:use [hiccup.def :only [defelem]])
+  (:require [hiccup.element :as html]))
 
 (defelem collapse-toggle
   "Returns a collapse toggle button for use in navbars."
@@ -54,7 +55,7 @@
       (string? item) [:li.dropdown-header {:role "presentation"} item]
       :default (let [[title href] item]
                  [:li {:role "presentation"}
-                  [:a {:tabindex "-1" :role "menuitem" :href href} title]])))])
+                  (html/link-to {:tabindex "-1" :role "menuitem"} href title)])))])
 
 (defelem pager
   "Returns a pager element. Disables the previous link and/or the next link if
