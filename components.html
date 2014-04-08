@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Giddyup Bootstrap Elements</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button bootstrap-template="collapse-toggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#giddyup-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <a class="navbar-brand" href="https://github.com/asmala/giddyup">Giddyup</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="giddyup-navbar">
+          <ul class="nav navbar-nav">
+            <li><a href="#giddyup-display">Display</a></li>
+            <li><a href="#giddyup-info">Info</a></li>
+            <li><a href="#giddyup-modal">Modal</a></li>
+            <li><a href="#giddyup-navigation">Navigation</a></li>
+            <li><a href="#giddyup-tables">Tables</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>Giddyup Bootstrap Elements</h1>
+      </div>
+
+      <p class="lead">
+        This page is used by giddyup test its hiccup data structure generation
+        functions, but you can also use it as a cheatsheet for what the library
+        can do.
+      </p>
+
+      <div class="page-header">
+        <h1 id="giddyup-display">giddyup.display</h1>
+      </div>
+
+      <h2>accordion</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel-group" id="accordion" bootstrap-template="accordion"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#accordion-0">Bootstrap</a></h4></div><div id="accordion-0" class="panel-collapse collapse in"><div class="panel-body">Boostrap is an HTML scaffold for web apps</div></div></div><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#accordion-1">Clojure</a></h4></div><div id="accordion-1" class="panel-collapse collapse"><div class="panel-body">Clojure is a powerful JVM language</div></div></div><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#accordion-2">Giddyup</a></h4></div><div id="accordion-2" class="panel-collapse collapse"><div class="panel-body">Giddyup brings Boostrap and Clojure together</div></div></div></div>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(accordion
+  "accordion"
+  ["Boostrap" "Boostrap is an HTML scaffold for web apps"]
+  ["Clojure" "Clojure is a powerful JVM language"]
+  ["Giddyup" "Giddyup brings Boostrap and Clojure together"])</code></pre>
+        </div>
+      </div>
+
+      <h2>carousel</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div id="carousel" bootstrap-template="carousel" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators"><li data-target="#carousel" data-slide-to="0" class="active"></li><li data-target="#carousel" data-slide-to="1"></li><li data-target="#carousel" data-slide-to="2"></li></ol><div class="carousel-inner"><div class="item active"><img src="http://lorempixel.com/600/400/nature/"><div class="carousel-caption">Nature</div></div><div class="item"><img src="http://lorempixel.com/600/400/city/"><div class="carousel-caption">City</div></div><div class="item"><img src="http://lorempixel.com/600/400/technics/"><div class="carousel-caption">Tech</div></div></div><a class="carousel-control left" href="#carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a><a class="carousel-control right" href="#carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(carousel
+  "carousel"
+  [[:img {:src "http://lorempixel.com/600/400/nature/"}]
+   "Nature"]
+  [[:img {:src "http://lorempixel.com/600/400/city/"}]
+   "City"]
+  [[:img {:src "http://lorempixel.com/600/400/technics/"}]
+   "Tech"])</code></pre>
+        </div>
+      </div>
+
+      <h2>media-object</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="media" bootstrap-template="media-object"><img class="pull-left media-object" src="http://lorempixel.com/80/80/abstract/"><div class="media-body"><h4 class="media-heading">On Apr 8, 2014, Anonymous wrote:</h4><p>This seems to work well enough.</p></div></div>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(media-object
+  "http://lorempixel.com/80/80/abstract"
+  "On Apr 8, 2014, Janne wrote:"
+  [:p "This seems to work well enough."])</code></pre>
+        </div>
+      </div>
+
+
+      <div class="page-header">
+        <h1 id="giddyup-info">giddyup.info</h1>
+      </div>
+
+      <h2>alert</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div bootstrap-template="alert" class="alert fade in alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Login failed</div>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(alert :warning "Login failed")</code></pre>
+        </div>
+      </div>
+
+      <h2>icon</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <span bootstrap-template="icon" class="glyphicon glyphicon-pencil"></span>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(icon :pencil)</code></pre>
+        </div>
+      </div>
+
+      <h2>progress-bar</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div bootstrap-template="progress-bar" class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span></div></div>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(progress-bar 60)</code></pre>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <h1 id="giddyup-modal">giddyup.modal</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal">
+              Launch demo modal
+            </button>
+          </p>
+          <div class="modal fade in" id="modal" bootstrap-template="modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header" bootstrap-template="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">Question for You</h4></div><div class="modal-body"><p>What does Marcellus Wallace look like?</p></div><div class="modal-footer"><button type="button" class="btn" data-dismiss="modal" bootstrap-template="modal-dismiss-button">Wha-wha...?</button></div></div></div></div>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(modal
+ (modal-header "Question for You")
+ [:div.modal-body
+  [:p "What does Marcellus Wallace look like?"]]
+ [:div.modal-footer
+  (modal-dismiss-button {:class "btn"} "Wha-wha...?")])</code></pre>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <h1 id="giddyup-navigation">giddyup.navigation</h1>
+      </div>
+
+      <h2>dropdown-menu</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="dropdown open hidden-xs hidden-sm">
+            <ul class="dropdown-menu" bootstrap-template="dropdown-menu" role="menu"><li role="presentation"><a role="menuitem" tabindex="-1" href="#open">Open...</a></li><li role="presentation" class="divider"></li><li role="presentation" class="dropdown-header">Save file</li><li role="presentation"><a role="menuitem" tabindex="-1" href="#save">Save</a></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#save-as">Save As...</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#quit">Quit</a></li></ul>
+
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <pre><code>(dropdown-menu
+  ["Open..." "#open"]
+  :divider
+  "Save file"
+  ["Save" "#save"]
+  ["Save As..." "#save-as"]
+  :divider
+  ["Quit" "#quit"])</code></pre>
+        </div>
+      </div>
+
+      <h2>navbar</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <nav class="navbar navbar-default" role="navigation" bootstrap-template="navbar"><div class="container"><div class="navbar-header"><a href="#" class="navbar-brand">Giddyup</a></div><ul class="nav navbar-nav"><li><a href="#giddyup-display">Display</a></li><li><a href="#giddyup-info">Info</a></li><li><a href="#giddyup-modal">Modal</a></li></ul></div></nav>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(navbar
+  [:div.navbar-header
+   [:a.navbar-brand {:href="#"} "Giddyup"]]
+   [:ul.nav.navbar-nav
+    [:li [:a {:href "#giddyup-display"} "Display"]]
+    [:li [:a {:href "#giddyup-info"} "Info"]]
+    [:li [:a {:href "#giddyup-modal"} "Modal"]]])</code></pre>
+        </div>
+      </div>
+
+
+      <h2>pager</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <ul bootstrap-template="pager" class="pager"><li class="previous disabled"><a href="#">&larr; Previous</a></li><li class="next"><a href="#next">Next &rarr;</a></li></ul>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(pager "&larr; Previous"
+       [:a {:href "#next"} "Next &rarr;"])</code></pre>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <h1 id="giddyup-tables">giddyup.tables</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div bootstrap-template="table-with-caption" class="panel panel-default"><div class="panel-heading">Contact Info</div><table bootstrap-template="table-without-caption" class="table"><thead bootstrap-template="thead"><tr><th>Name</th><th>Email</th></tr></thead><tbody bootstrap-template="tbody"><tr bootstrap-template="row"><td>Joe</td><td>joe@example.com</td></tr><tr><td>Jill</td><td>jill@example.com</td></tr></tbody></table></div>
+        </div>
+        <div class="col-md-6">
+          <pre><code>(thead "Name" "Email")
+
+(row "Joe" "joe@example.com")
+
+(tbody ["Joe" "joe@example.com"]
+       ["Jill" "jill@example.com"])
+
+(table "Contact Info"
+       ["Name" "Email"]
+       ["Joe" "joe@example.com"]
+       ["Jill" "jill@example.com"])</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
