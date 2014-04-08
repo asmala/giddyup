@@ -5,18 +5,15 @@
 
 (deftest test-alert
   (testing "alert"
-    (let [result (alert "Login failed")]
-      (is (valid-hiccup? result))
-      (is (has-tag? result [:a {:data-dismiss "alert"}])))))
+    (matches-template? :alert
+                       (alert :danger "Login failed"))))
 
 (deftest test-icon
   (testing "icon"
-    (let [result (icon "pencil")]
-      (is (valid-hiccup? result))
-      (is (= result [:i {:class "icon-pencil"}])))))
+    (matches-template? :icon
+                       (icon :pencil))))
 
 (deftest test-progress-bar
   (testing "progress-bar"
-    (let [result (progress-bar 67)]
-      (is (valid-hiccup? result))
-      (is (has-tag? result [:* {:style "width: 67%;"}])))))
+    (matches-template? :progress-bar
+                       (progress-bar 60))))

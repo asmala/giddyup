@@ -1,27 +1,23 @@
 (ns giddyup.modal-test
   (:use [clojure.test]
         [giddyup.modal]
-        [giddyup.test-support]
-        [hiccup.util :only [to-uri]]))
+        [giddyup.test-support]))
 
 (deftest test-modal
   (testing "modal"
-    (let [result (modal [:p.first] [:p.second])]
-      (is (valid-hiccup? result))
-      (is (has-tags? result
-                     [:div#modal]
-                     [:p.first] [:p.second])))))
+    (matches-template? :modal
+                       (modal (modal-header "Question for You")
+                              [:div.modal-body
+                               [:p "What does Marcellus Wallace look like?"]]
+                              [:div.modal-footer
+                               (modal-dismiss-button {:class "btn"} "Wha-wha...?")]))))
 
-(deftest test-modal-dismiss-link
-  (testing "modal-dismiss-link"
-    (let [result (modal-dismiss-link "Close")]
-      (is (valid-hiccup? result))
-      (is (has-tag? result [:a {:data-dismiss "modal"}])))))
+(deftest test-modal-dismiss-button
+  (testing "modal-dismiss-button"
+    (matches-template? :modal-dismiss-button
+                       (modal-dismiss-button {:class "btn"} "Wha-wha...?"))))
 
 (deftest test-modal-header
   (testing "modal-header"
-    (let [result (modal-header "Question for You")]
-      (is (valid-hiccup? result))
-      (is (has-tags? result
-                     [:a {:data-dismiss "modal"}]
-                     [:* "Question for You"])))))
+    (matches-template? :modal-header
+                       (modal-header "Question for You"))))

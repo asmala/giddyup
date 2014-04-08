@@ -42,5 +42,7 @@
   [caption-or-headers & rows]
   (if-let [caption (if (string? caption-or-headers) caption-or-headers)]
     (let [[headers & rows] rows]
-      [:table [:caption caption] (apply thead headers) (apply tbody rows)])
-    [:table (apply thead caption-or-headers) (apply tbody rows)]))
+      [:div.panel.panel-default
+       [:div.panel-heading caption]
+       [:table.table (apply thead headers) (apply tbody rows)]])
+    [:table.table (apply thead caption-or-headers) (apply tbody rows)]))

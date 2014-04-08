@@ -1,23 +1,22 @@
 (ns giddyup.display
   "Bootstrap display elements."
-  (:use [giddyup.util :only [anchor]]
-        [hiccup.def :only [defelem]])
-  (:require [hiccup.element :as html]))
+  (:use [hiccup.def :only [defelem]])
+  (:require [giddyup.info :as info]))
 
 (defn- accordion-group
   "Creates accordion group number `n` inside accordion `parent-id` with the
   given `title` and `content`."
   [parent-id n title & content]
-  (let [id (str parent-id "-" n)
-        body-class (str "accordion-body collapse"
-                        (if (zero? n) " in"))]
-    [:div.accordion-group
-     [:div.accordion-heading
-      (html/link-to {:class "accordion-toggle" :data-toggle "collapse"
-                     :data-parent (anchor parent-id)} (anchor id)
-                     title)]
-     [:div {:id id :class body-class}
-      [:div.accordion-inner
+  (let [id (str parent-id "-" n)]
+    [:div.panel.panel-default
+     [:div.panel-heading
+      [:h4.panel-title
+       [:a {:data-toggle "collapse" :data-parent (str "#" parent-id)
+            :href (str "#" id)}
+        title]]]
+     [:div {:id id :class (str "panel-collapse collapse"
+                               (if (zero? n) " in"))}
+      [:div.panel-body
        content]]]))
 
 (defelem accordion
@@ -32,7 +31,7 @@
                  [\"More info\"
                   [:p \"You might also find this interesting.\"]])"
   [id & groups]
-  [:div.accordion {:id id}
+  [:div.panel-group {:id id}
    (map-indexed (partial apply accordion-group id) groups)])
 
 (defelem carousel
@@ -46,15 +45,20 @@
                  [:div.caption [:h4 \"Top of the world\"]]]
                 [(image \"lhasa.png\")
                  [:div.caption [:h4 \"Off to Potala palace\"]]])"
-  [id slide & slides]
-  [:div.carousel.slide {:id id}
+  [id [img caption] & slides]
+  [:div.carousel.slide {:id id :data-ride "carousel"}
+   [:ol.carousel-indicators
+    (for [n (range (inc (count slides)))]
+      [:li (merge {:data-target (str "#" id) :data-slide-to (str n)}
+                  (if (zero? n) {:class "active"}))])]
    [:div.carousel-inner
-    [:div.item.active slide]
-    (for [slide slides] [:div.item slide])]
-   (html/link-to {:class "carousel-control left" :data-slide "prev"}
-                 (anchor id) "‹")
-   (html/link-to {:class "carousel-control right" :data-slide "next"}
-                 (anchor id) "›")])
+    [:div.item.active img [:div.carousel-caption caption]]
+    (for [[img caption] slides]
+      [:div.item img [:div.carousel-caption caption]])]
+   [:a {:class "carousel-control left" :href (str "#" id) :data-slide "prev"}
+    (info/icon "chevron-left")]
+   [:a {:class "carousel-control right" :href (str "#" id) :data-slide "next"}
+    (info/icon "chevron-right")]])
 
 (defelem media-object
   "Returns a media object. `image` can be either a string representing a URL or
@@ -75,28 +79,9 @@
   [:div.media
    (if (vector? image)
      image
-     (html/image {:class "pull-left media-object"} image))
+     [:img.pull-left.media-object {:src image}])
    [:div.media-body
     (if (vector? heading)
       heading
       [:h4.media-heading heading])
     content]])
-
-(defelem thumbnails
-  "Returns a set of thumbnails. `thumbnail-class` will be applied to the element
-  wrapping each thumbnail and should indicate the width of the thumbnails, e.g.
-  `\"span4\"`. `images` are of the format `[src alt? url?]`.
-
-  ### Example
-
-      (thumbnails \"span4\"
-                  [\"tibet.png\" \"Top of the world\"]
-                  [\"potala.png\" \"Potala Palace\" \"#potala\"])"
-  [thumbnail-class & images]
-  [:ul.thumbnails
-   (for [[src alt url] images]
-     [:li {:class thumbnail-class}
-      (if url
-        (html/link-to {:class "thumbnail"} url
-                      (html/image src alt))
-        [:div.thumbnail (html/image src alt)])])])

@@ -1,37 +1,46 @@
 (ns giddyup.test-support
-  (:require [hiccup.core :as hcore]
-            [hiccup.compiler :as hcomp]))
+  (:use [clojure.test])
+  (:require [clojure.java.io :as io]
+            [clojure.walk :as walk]
+            [hiccup.util :as util]
+            [net.cgrand.enlive-html :as enlive]))
 
-(defn valid-hiccup?
-  "Returns true if the result of the hiccup compilation is a string."
-  [element]
-  (string? (hcore/html element)))
+(defn- normalize-nodes
+  "Walks through a tree of Enlive nodes and normalizes them for comparison."
+  [m]
+  (let [f (fn [[k v]]
+            (cond
+             (and (= k :content) (or (nil? v) (= v ""))) [k '()]
+             (and (= k :attrs) (nil? v)) [k {}]
+             (= k :bootstrap-template) nil
+             (#{:href :src} k) [k (util/as-str v)]
+             :default [k v]))]
+    ;; only apply to maps
+    (walk/postwalk (fn [x] (if (map? x)
+                            (into {} (map f x))
+                            x))
+                   m)))
 
-(defn- normalize-nesting
-  "Returns `coll` with nested seqs removed."
-  [coll]
-  (reverse (reduce #(if (seq? %2) (into %1 (normalize-nesting %2)) (conj %1 %2))
-                   '() coll)))
+(def bootstrap-html
+  (enlive/html-resource (io/resource "components.html")))
 
-(defn has-tag?
-  "Returns false unless `node` contains a tag matching `match`."
-  [node match]
-  (let [[tag attrs content] (hcomp/normalize-element node)
-        [tag-match attrs-match content-match] (hcomp/normalize-element match)
-        content (normalize-nesting content)
-        content-match (normalize-nesting content-match)]
-    (or (and (or (= tag-match "*")
-                 (= tag tag-match))
-             (or (empty? attrs-match)
-                 (every? #(or (nil? (attrs-match %))
-                              (= (attrs %) (attrs-match %)))
-                         (keys attrs-match)))
-             (or (empty? content-match)
-                 (= content content-match)))
-        (some #(has-tag? % match)
-              (filter sequential? content)))))
+(defn enlive-html
+  "Converts `hiccup-data` into Enlive nodes."
+  [hiccup-data]
+  (-> (enlive/html hiccup-data)
+      first
+      normalize-nodes))
 
-(defn has-tags?
-  "Checks for multiple tags in node. Returns true if all tags were found."
-  [node & matchers]
-  (every? (partial has-tag? node) matchers))
+(defn bootstrap-template
+  "Returns nodes corresponding to `template` in `test-resources/components.html`."
+  [template]
+  (-> (enlive/select bootstrap-html
+                     [(enlive/attr= :bootstrap-template (name template))])
+      first
+      normalize-nodes))
+
+(defmacro matches-template?
+  "Tests if the given `hiccup-data` matches the Bootstrap `template`."
+  [template hiccup-data]
+  `(is (= (enlive-html ~hiccup-data)
+          (bootstrap-template ~template))))

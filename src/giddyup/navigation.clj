@@ -1,19 +1,31 @@
 (ns giddyup.navigation
   "Bootstrap navigation elements."
-  (:use [hiccup.def :only [defelem]])
-  (:require [hiccup.element :as html]))
+  (:use [hiccup.def :only [defelem]]))
+
+(defelem collapse-toggle
+  "Returns a collapse toggle button for use in navbars."
+  ([target] (collapse-toggle target "Toggle navigation"))
+  ([target alt-text]
+     [:button.navbar-toggle {:type "button" :data-toggle "collapse"
+                             :data-target target}
+      [:span.sr-only alt-text]
+      [:span.icon-bar]
+      [:span.icon-bar]
+      [:span.icon-bar]]))
 
 (defelem navbar
   "Returns a navigation bar with `content`.
 
   ### Example
 
-      (navbar (link-to {:class \"brand\"} \"/\" \"My Journal\"))"
+      (navbar
+        [:div.navbar-header
+         (link-to {:class \"brand\"} \"/\" \"My Journal\")
+         (collapse-toggle \"#main-nav\")])"
   [& content]
-  [:div.navbar
-   [:div.navbar-inner
-    [:div.container
-     content]]])
+  [:nav.navbar.navbar-default {:role "navigation"}
+   [:div.container
+    content]])
 
 (defelem dropdown-menu
   "Returns a dropdown menu consisting of `items`. For format of `items`, see
@@ -26,7 +38,6 @@
   * `:divider`
   * `\"Nav header\"`
   * `[\"link text\" \"/link-url\"]`
-  * `[\"link text\" [submenu-items]]`
 
   ### Example
 
@@ -36,61 +47,14 @@
                      [\"Photos\" \"/media/photos\"]
                      [\"Video\" \"/media/video\"])"
   [& items]
-  [:ul.dropdown-menu {:role "menu" :aria-labelledby "dropdownMenu"}
+  [:ul.dropdown-menu {:role "menu"}
    (for [item items]
      (cond
-      (keyword? item) [:li.divider]
-      (string? item) [:li.nav-header item]
-      :else (let [[s link-or-submenu] item]
-              (if (string? link-or-submenu)
-                [:li (html/link-to {:tabindex "-1"} link-or-submenu s)]
-                [:li.dropdown-submenu
-                 (html/link-to {:tabindex "-1"} "#" s)
-                 (apply dropdown-menu link-or-submenu)]))))])
-
-(defelem nav-menu
-  "Returns a navigation menu consisting of `items`. For format of `items`, see
-  `dropdown-menu-item`.
-
-  ### Item format
-
-  For format of `items`, see `dropdown-menu`.
-
-  ### Example
-
-      (nav-menu [\"Journal Entries\" \"/journal-entries\"]
-                :divider
-                [\"Media\" [[\"Add new\" \"/media/new\"]
-                           :divider
-                           [\"Photos\" \"/media/photos\"]
-                           [\"Video\" \"/media/video\"]]])"
-  [& items]
-  [:ul.nav
-   (for [item items]
-       (if (keyword? item)
-         [:li.divider-vertical]
-         (let [[s link-or-submenu] item]
-           (if (string? link-or-submenu)
-             [:li (html/link-to link-or-submenu s)]
-             [:li.dropdown
-              (html/link-to {:class "dropdown-toggle" :data-toggle "dropdown"} "#"
-                            s [:b.caret])
-              (apply dropdown-menu link-or-submenu)]))))])
-
-(defelem breadcrumbs
-  "Returns a breadcrumbs link element. The last item in `links` should be the
-  title of the current page.
-
-  ### Example
-
-      (breadcrumbs (link-to \"/\" \"Home\")
-                   (link-to \"/news\" \"News\")
-                   \"Politics\")"
-  [& links]
-  [:ul.breadcrumb
-   (for [link (butlast links)]
-     [:li link " " [:span.divider "/"]])
-   [:li.active (last links)]])
+      (keyword? item) [:li.divider {:role "presentation"}]
+      (string? item) [:li.dropdown-header {:role "presentation"} item]
+      :default (let [[title href] item]
+                 [:li {:role "presentation"}
+                  [:a {:tabindex "-1" :role "menuitem" :href href} title]])))])
 
 (defelem pager
   "Returns a pager element. Disables the previous link and/or the next link if
@@ -102,7 +66,8 @@
   [prev-link next-link]
   (letfn [(pager-link [link css-class]
             (if (string? link)
-              [:li {:class (str css-class " disabled")} (html/link-to "#" link)]
+              [:li {:class (str css-class " disabled")}
+               [:a {:href "#"} link]]
               [:li {:class css-class} link]))]
     [:ul.pager
      (pager-link prev-link "previous")
