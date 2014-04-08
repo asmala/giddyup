@@ -10,123 +10,19 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 Add the following to your `project.clj`:
 
 ```clojure
-[giddyup "0.6.2"]
+[giddyup "0.7.0"]
 ```
 
 For other options, please refer to the library
 [Clojars page](https://clojars.org/giddyup).
 
 
-## Documentation
+## Documentation and Examples
 
-You can find examples below and for more extensive documentation you
-can refer to the [API docs](http://asmala.github.com/giddyup).
-
-
-## Forms
-
-Easily create Bootstrap styled forms:
-
-```clojure
-(fieldset "New account"
-          (wrapper
-           (label :email "Email")
-           nil
-           (hint "Double-check your email address")
-           (email-field {:placeholder "joe@example.com"} :email))
-          (wrapper
-           (label :password "Password")
-           (password-field :password)))
-
-(actions
- (button-link-to "/" "Cancel")
- (submit-button "Sign up"))
-```
-
-
-## Alerts and progress bars
-
-```clojure
-(alert "Logged in")
-
-(alert {:class "alert alert-block alert-error"}
-       [:h4 "Login failed"]
-       [:p "Please check your username and password."])
-
-(progress-bar 60)
-```
-
-
-## Navigation menus
-
-```clojure
-(nav-menu
- ["Journal Entries" "/journal-entries"]
- :divider
- ["Media" [["Add new" "/media/new"]
-           :divider
-           ["Photos" "/media/photos"]
-           ["Video" "/media/video"]]])
-
-(breadcrumbs
- (link-to "#home" "Home")
- (link-to "#category" "Category")
- "Current page")
-
-(pager
- (link-to "#previous" "Previous")
- (link-to "#next" "Next"))
-```
-
-
-## Modals
-
-```clojure
-(modal
- (modal-header "Question for You")
- [:div.modal-body
-  [:p "What does Marcellus Wallace look like?"]]
- [:div.modal-footer
-  (modal-dismiss-link {:class "btn"} "Wha-wha…?")])
-```
-
-
-## Display elements
-
-```clojure
-(accordion "myAccordion"
-           ["Introduction"
-            [:p "Here's some things you need to know."]]
-           ["More info"
-            [:p "You might also find this interesting."]])
-
-(carousel "myCarousel"
-          [(image "tibet.png") [:div.caption [:h4 "Top of the world"]]]
-          [(image "lhasa.png") [:div.caption [:h4 "Off to Potala palace"]]])
-
-(media-object "img/avatars/joe.png" "On Nov 1st, 2012, Joe said:"
-              "Media objects are neat!")
-
-(thumbnails "span4"
-            ["tibet.png"]
-            ["potala.png" "Potala Palace"]
-            ["kailash.png" "Mount Kailash" "#kailash"])
-```
-
-
-## Tables
-
-```clojure
-(table "Contact Info"
-       ["Name" "Email"]
-       ["Joe" "joe@example.com"]
-       ["Jenny" "jenny@example.com"])
-
-(thead "Name" "Email")
-
-(tbody ["Joe" "joe@example.com"]
-       ["Jenny" "jenny@example.com"])
-```
+You can find examples on the
+[component overview page](http://asmala.github.io/giddyup/components.html)
+and for more extensive documentation you can refer to the
+[API docs](http://asmala.github.com/giddyup).
 
 
 ## Design philosophy
@@ -148,7 +44,7 @@ with a feature branch.
 
 ## License
 
-Copyright © 2012 Janne Asmala
+Copyright © 2014 Janne Asmala
 
 Distributed under the
 [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html),
