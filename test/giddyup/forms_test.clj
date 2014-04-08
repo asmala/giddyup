@@ -107,7 +107,7 @@
   (testing "text-area"
     (let [result (text-area :bio "It's a long story...")]
       (is (valid-hiccup? result))
-      (is (has-tag? result [:textarea {:name "bio"} "It's a long story..."])))))
+      (is (has-tag? result [:textarea {:name "bio"} "It&apos;s a long story..."])))))
 
 (deftest test-text-field
   (testing "text-field"

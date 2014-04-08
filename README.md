@@ -10,7 +10,7 @@ A library of [Bootstrap](http://getbootstrap.com/) helpers for
 Add the following to your `project.clj`:
 
 ```clojure
-[giddyup "0.6.1"]
+[giddyup "0.6.2"]
 ```
 
 For other options, please refer to the library
